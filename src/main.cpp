@@ -25,11 +25,11 @@
 
 #include <optional>
 
-#include <oc/teensy/Teensy.hpp>
+#include <oc/hal/teensy/Teensy.hpp>
 #include <oc/app/OpenControlApp.hpp>
 #include <oc/context/IContext.hpp>
 #include <oc/context/Requirements.hpp>
-#include <oc/common/EncoderDef.hpp>
+#include <oc/hal/common/EncoderDef.hpp>
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Configuration - Adapt to your hardware
@@ -41,9 +41,9 @@ namespace Config {
 
     // Encoder hardware definitions - ADAPT pins to your wiring
     // EncoderDef(id, pinA, pinB, ppr, rangeAngle, ticksPerEvent, invertDirection)
-    constexpr std::array<oc::common::EncoderDef, 2> ENCODERS = {{
-        oc::common::EncoderDef(1, 22, 23, 24, 270, 4, true),  // ADAPT: pins 22, 23
-        oc::common::EncoderDef(2, 18, 19, 24, 270, 4, true),  // ADAPT: pins 18, 19
+    constexpr std::array<oc::hal::common::EncoderDef, 2> ENCODERS = {{
+        oc::hal::common::EncoderDef(1, 22, 23, 24, 270, 4, true),  // ADAPT: pins 22, 23
+        oc::hal::common::EncoderDef(2, 18, 19, 24, 270, 4, true),  // ADAPT: pins 18, 19
     }};
 }
 
@@ -90,7 +90,7 @@ std::optional<oc::app::OpenControlApp> app;
 void setup() {
     OC_LOG_INFO("Example 02: Encoders");
 
-    app = oc::teensy::AppBuilder()
+    app = oc::hal::teensy::AppBuilder()
         .midi()
         .encoders(Config::ENCODERS);
 
