@@ -27,9 +27,9 @@
 
 #include <oc/hal/teensy/Teensy.hpp>
 #include <oc/app/OpenControlApp.hpp>
-#include <oc/context/IContext.hpp>
+#include <oc/context/ContextBase.hpp>
 #include <oc/context/Requirements.hpp>
-#include <oc/hal/common/EncoderDef.hpp>
+#include <oc/hal/common/embedded/EncoderDef.hpp>
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Configuration - Adapt to your hardware
@@ -41,9 +41,9 @@ namespace Config {
 
     // Encoder hardware definitions - ADAPT pins to your wiring
     // EncoderDef(id, pinA, pinB, ppr, rangeAngle, ticksPerEvent, invertDirection)
-    constexpr std::array<oc::hal::common::EncoderDef, 2> ENCODERS = {{
-        oc::hal::common::EncoderDef(1, 22, 23, 24, 270, 4, true),  // ADAPT: pins 22, 23
-        oc::hal::common::EncoderDef(2, 18, 19, 24, 270, 4, true),  // ADAPT: pins 18, 19
+    constexpr std::array<oc::hal::common::embedded::EncoderDef, 2> ENCODERS = {{
+        oc::hal::common::embedded::EncoderDef(1, 22, 23, 24, 270, 4, true),  // ADAPT: pins 22, 23
+        oc::hal::common::embedded::EncoderDef(2, 18, 19, 24, 270, 4, true),  // ADAPT: pins 18, 19
     }};
 }
 
@@ -53,7 +53,7 @@ namespace Config {
 
 enum class ContextID : uint8_t { MAIN = 0 };
 
-class MainContext : public oc::context::IContext {
+class MainContext : public oc::context::ContextBase {
 public:
     static constexpr oc::context::Requirements REQUIRES{
         .button = false,
