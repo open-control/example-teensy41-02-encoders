@@ -61,7 +61,7 @@ public:
         .midi = true
     };
 
-    oc::Result<void> init() override {
+    oc::type::Result<void> init() override {
         // Bind each encoder to a MIDI CC
         for (uint8_t i = 0; i < Config::ENCODERS.size(); ++i) {
             uint8_t id = Config::ENCODERS[i].id;
@@ -73,7 +73,7 @@ public:
                 OC_LOG_DEBUG("Encoder: CC {} = {}", cc, midiValue);
             });
         }
-        return oc::Result<void>::ok();
+        return oc::type::Result<void>::ok();
     }
 
     void update() override {}
